@@ -68,14 +68,14 @@ const daysIteration = function(inputArray) {
   let result = inputArray.map(x=>x.slice());
 
   inputArray.map( (elemOfArray, count)=>{
-      inputArray[count].map( (elem, index)=>{
+    inputArray[count].map( (elem, index)=>{
 
-          let totalAlive = countAliveNeighboursOfCell(inputArray, count, index);
-          let state =  isAlive(totalAlive, inputArray[count][index]);
-          result[count][index] = state;
+      let totalAlive = countAliveNeighboursOfCell(inputArray, count, index);
+      let state =  isAlive(totalAlive, inputArray[count][index]);
+      result[count][index] = state;
 
-          });
-      });
+    });
+  });
 
   return result;
 }
@@ -133,6 +133,25 @@ const toggleState = function(inputArray, arrayIndex, subArrayIndex) {
   return result;
 }
 
+const world = function(dimension,resurrectCells) {
+  let result = fillBoard(dimension); 
+  let arrayIndex = resurrectCells.map(x=>x[0]);
+  let subIndex = resurrectCells.map(x=>x[1]); 
+  for(let count=0; count<arrayIndex.length; count++) {
+    result = toggleState(result,arrayIndex[count],subIndex[count]);
+  }
+  return result;
+}
+
+const getCoordOfAliveCells = function(world) {
+  let result = [];
+  for(let count=0; count<world.length; count++) {
+    for(let index=0; index<world[count].length; index++) {
+      if(world[count][index] === 1) { result.push([count,index]) }
+    }
+  }
+  return result;
+}
 /* ------- EXPORTS ------- */
 
 module.exports = {
@@ -148,5 +167,7 @@ module.exports = {
   countAliveNeighboursOfCell,
   isAlive,
   toggleState,
-  daysIteration
+  daysIteration,
+  world,
+  getCoordOfAliveCells,
 };
