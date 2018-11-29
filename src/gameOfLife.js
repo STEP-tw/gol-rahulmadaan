@@ -5,8 +5,9 @@ const { daysIteration,
 
 const nextGeneration = function(currGeneration, bounds) {
     let result = [];
-    let dimensionOfWorld = (bounds.bottomRight[0] - bounds.topLeft[0] + 1);
-    result = world(dimensionOfWorld, currGeneration);
+    let heightOfWorld = (bounds.bottomRight[1] - bounds.topLeft[1] + 1);
+    let lengthOfWorld = (bounds.bottomRight[0] - bounds.topLeft[0] + 1);
+    result = world(heightOfWorld,lengthOfWorld, currGeneration);
     result = daysIteration(result);
     return getCoordOfAliveCells(result);
 };
