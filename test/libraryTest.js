@@ -14,6 +14,17 @@ const {
   daysIteration
 } = require('../src/library.js');
 
+const arrayOfArray = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9] ];
+
+const deadAndAlives = [
+  [1,0,1],
+  [0,0,1],
+  [0,0,1] ];
+
+
 describe('repeat', function() {
 
   it('should work for zero input', function() {
@@ -75,16 +86,6 @@ describe('getNeighbour', function() {
   });
 
 });
-
-const arrayOfArray = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9] ];
-
-const deadAndAlives = [
-  [1,0,1],
-  [0,0,1],
-  [0,0,1] ];
 
 describe('getHorizontalNeighbours', function() {
 
