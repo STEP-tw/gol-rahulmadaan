@@ -1,19 +1,16 @@
-let assert = require('assert');
+const assert = require('assert');
 
-let {
+const {
+  repeat,
+  generateDeads,
+  fillBoard,
   getNeighbour,
   getHorizontalNeighbours,
   getVerticalNeighbours,
   getAllNeighbours,
   countAliveNeighboursOfCell,
   isAlive,
-
-  repeat,
-  createBoard,
-  joinWithPipes,
-  generateDeads,
   toggleState,
-  fillBoard,
   daysIteration
 } = require('../src/library.js');
 
@@ -52,39 +49,9 @@ describe('fillBoard', function() {
 
   it('should work for length as positive number', function() {
     assert.deepEqual(fillBoard(1,1), [ [0] ]);
-    assert.deepEqual(fillBoard(3,2), [
-      [0, 0],
-      [0, 0],
-      [0, 0] ]);
+    assert.deepEqual(fillBoard(3,2), [ [0, 0], [0, 0], [0, 0] ]);
   });
 
-});
-
-describe('joinWithPipes', function() {
-
-  it('should return empty array for empty array', function() {
-    assert.deepEqual(joinWithPipes([]), []);
-
-  });
-
-  it('should add pipes to the string', function() {
-    assert.deepEqual(joinWithPipes([0]), ["|", " 0 |"]);
-    assert.deepEqual(joinWithPipes([0, 0]), ["|", " 0 |", " 0 |"]);
-  });
-
-});
-
-describe('createBoard', function() {
-
-  it('should return empty array for empty array', function() {
-    assert.deepEqual(createBoard([]), []);
-  });
-
-  it('should return empty array for array of empty arrays', function() {
-    assert.deepEqual(createBoard([ [] ]), []);
-    assert.deepEqual(createBoard([ [],[] ]), []);
-  });
-   
 });
 
 describe('getNeighbour', function() {

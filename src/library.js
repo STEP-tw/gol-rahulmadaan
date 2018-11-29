@@ -1,11 +1,25 @@
-/* ------ LOGIC ------ */
+const repeat = function(symbol, length) {
+  return new Array(length).fill(symbol).join('');
+};
+
+const generateDeads = function(length) {
+  return new Array(length).fill(0);
+};
+
+const fillBoard = function(height,length) {
+  let board = [];
+  for (let count = 0; count < height; count++) {
+    board.push(generateDeads(length));
+  }
+  return board;
+};
+
 
 const getNeighbour = function(inputArray, index) {
   let neighbours = [];
   if (index < 0) { return neighbours; }
   neighbours.push(inputArray[index - 1]);
   neighbours.push(inputArray[index + 1]);
-
   return neighbours.filter((x) => x!==undefined);
 };
 
@@ -80,50 +94,6 @@ const daysIteration = function(inputArray) {
   return result;
 };
 
-/* ------- VISUAL -------- */
-
-const repeat = function(symbol, length) {
-  return new Array(length).fill(symbol).join('');
-};
-
-const generateDeads = function(length) {
-  return new Array(length).fill(0);
-};
-
-const generateLine = (length) => repeat("-", length);
-
-const joinWithPipes = function(input) {
-  let output = [];
-  if (input[0] !== undefined) { output.push('|'); }
-
-  for (let value of input) {
-    output.push(" " + value + " |");
-  }
-
-  return output;
-};
-
-const createBoard = function(data) {
-  let result = [];
-  let lengthOfData = data.length;
-  if (lengthOfData === 0 || data[0].length === 0) { return result; }
-  result.push(generateLine(lengthOfData * 4 + 1));
-
-  for (let index = 0; index < lengthOfData; index++) {
-    result.push(joinWithPipes(data[index]).join(""));
-    result.push(generateLine(lengthOfData * 4 + 1));
-  }
-
-  return result.join("\n");
-};
-
-const fillBoard = function(height,length) {
-  let board = [];
-  for (let count = 0; count < height; count++) {
-    board.push(generateDeads(length));
-  }
-  return board;
-};
 
 const toggleState = function(inputArray, arrayIndex, subArrayIndex) {
   let result = inputArray.slice();
@@ -152,12 +122,11 @@ const getCoordOfAliveCells = function(world) {
   }
   return result;
 };
+
 /* ------- EXPORTS ------- */
 
 module.exports = {
   repeat,
-  createBoard,
-  joinWithPipes,
   generateDeads,
   fillBoard,
   getNeighbour,
