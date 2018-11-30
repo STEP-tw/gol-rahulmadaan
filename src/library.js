@@ -122,6 +122,34 @@ const getCoordOfAliveCells = function(world) {
   }
   return result;
 };
+const validateOutput = function(bound,aliveCellsCoordinate) {
+  let result = aliveCellsCoordinate.map( x=>x.slice() );
+
+  result = result.map( function(x){
+      return x.map( (number,index)=>(index === 0) ? number + this : number )
+      }, bound.topLeft[0]  ) 
+
+  result =  result.map( function(x){
+      return x.map( (number,index)=>(index === 1) ? number + this : number )
+      }, bound.topLeft[1]  ) 
+
+  return result;
+}
+
+
+const validateInput = function(bound,aliveCellsCoordinate) {
+  let result = aliveCellsCoordinate.map( x=>x.slice() );
+
+  result = result.map( function(x){
+      return x.map( (number,index)=>(index === 0) ? number - this : number )
+      }, bound.topLeft[0]  ) 
+
+  result =  result.map( function(x){
+      return x.map( (number,index)=>(index === 1) ? number - this : number )
+      }, bound.topLeft[1]  ) 
+
+  return result;
+}
 
 /* ------- EXPORTS ------- */
 
@@ -139,4 +167,6 @@ module.exports = {
   daysIteration,
   world,
   getCoordOfAliveCells,
+  validateInput,
+  validateOutput
 };
