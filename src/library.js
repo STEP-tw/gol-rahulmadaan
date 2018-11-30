@@ -138,18 +138,36 @@ const validateOutput = function(bound,aliveCellsCoordinate) {
 
 
 const validateInput = function(bound,aliveCellsCoordinate) {
-  let result = aliveCellsCoordinate.map( x=>x.slice() );
+  let result = filterValidGeneration(bound,aliveCellsCoordinate);
+  result = result.map( x=>x.slice() );
 
   result = result.map( function(x){
-      return x.map( (number,index)=>(index === 0) ? number - this : number )
-      }, bound.topLeft[0]  ) 
+    return x.map( (number,index)=>(index === 0) ? number - this : number )
+  }, bound.topLeft[0]  ) 
 
   result =  result.map( function(x){
-      return x.map( (number,index)=>(index === 1) ? number - this : number )
-      }, bound.topLeft[1]  ) 
+    return x.map( (number,index)=>(index === 1) ? number - this : number )
+  }, bound.topLeft[1]  ) 
 
   return result;
 }
+
+const filterValidGeneration = function(bounds,currGeneration){
+
+  const isValid = function(elem){
+    return elem >= bounds.topLeft[this] && elem <= bounds.bottomRight[this];
+  }
+
+  const checkValidHeight = isValid.bind(0);
+  const checkValidWidth = isValid.bind(1);
+
+  const checkValidDimensions =  function(subArray){
+    return checkValidHeight(subArray[0]) && checkValidWidth(subArray[1]);
+  }
+
+  return currGeneration.filter( checkValidDimensions );
+};
+
 
 /* ------- EXPORTS ------- */
 
