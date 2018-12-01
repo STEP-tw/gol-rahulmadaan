@@ -2,14 +2,14 @@ const repeat = function(symbol, length) {
   return new Array(length).fill(symbol).join('');
 };
 
-const generateDeads = function(length) {
+const generateDeadCells = function(length) {
   return new Array(length).fill(0);
 };
 
 const fillBoard = function(height,length) {
   let board = [];
   for (let count = 0; count < height; count++) {
-    board.push(generateDeads(length));
+    board.push(generateDeadCells(length));
   }
   return board;
 };
@@ -173,7 +173,7 @@ const filterValidGeneration = function(bounds,currGeneration){
 
 module.exports = {
   repeat,
-  generateDeads,
+  generateDeadCells,
   fillBoard,
   getNeighbour,
   getHorizontalNeighbours,

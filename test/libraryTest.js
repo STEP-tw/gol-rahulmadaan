@@ -2,7 +2,7 @@ const assert = require('assert');
 
 const {
   repeat,
-  generateDeads,
+  generateDeadCells,
   fillBoard,
   getNeighbour,
   getHorizontalNeighbours,
@@ -39,15 +39,15 @@ describe('repeat', function() {
 });
 
 
-describe('generateDeads', function() {
+describe('generateDeadCells', function() {
 
   it('should work for array of length 0', function() {
-    assert.deepEqual(generateDeads(0), []);
+    assert.deepEqual(generateDeadCells(0), []);
   });
 
   it('should work for positive numbers', function() {
-    assert.deepEqual(generateDeads(1), [0]);
-    assert.deepEqual(generateDeads(3), [0, 0, 0]);
+    assert.deepEqual(generateDeadCells(1), [0]);
+    assert.deepEqual(generateDeadCells(3), [0, 0, 0]);
   });
 
 });
