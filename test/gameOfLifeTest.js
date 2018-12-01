@@ -76,4 +76,13 @@ describe('nextGeneration', () => {
     assert.ok(isSameArity(actualNextGen, expectedNextGen));
   });
 
+  it('should handle for negative co-ordinates ',()=> {
+    let currentGeneration = [[-1,0],[0,-1],[0,0]];
+    let bounds = { topLeft: [-1,-1], bottomRight: [0,0]};
+    let expectedNextGen = [[-1,-1],[-1,0],[0,-1],[0,0]];
+    let actualNextGen = nextGeneration(currentGeneration,bounds);
+    assert.deepEqual(actualNextGen, expectedNextGen);
+  });
+
+
 });

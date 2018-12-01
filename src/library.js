@@ -78,7 +78,7 @@ const isAlive = function(aliveNeighbours, currentState) {
   return currentState;
 };
 
-const daysIteration = function(inputArray) {
+const runIteration = function(inputArray) {
   let result = inputArray.map(x=>x.slice());
 
   inputArray.map( (elemOfArray, count)=>{
@@ -182,7 +182,7 @@ module.exports = {
   countAliveNeighboursOfCell,
   isAlive,
   toggleState,
-  daysIteration,
+  runIteration,
   world,
   getCoordOfAliveCells,
   validateInput,

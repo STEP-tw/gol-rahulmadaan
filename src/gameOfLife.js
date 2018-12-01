@@ -1,4 +1,4 @@
-const { daysIteration,
+const { runIteration,
   world,
   getCoordOfAliveCells,
   validateInput,
@@ -10,7 +10,7 @@ const nextGeneration = function(currGeneration, bounds) {
     let heightOfWorld = (bounds.bottomRight[1] - bounds.topLeft[1] + 1);
     let lengthOfWorld = (bounds.bottomRight[0] - bounds.topLeft[0] + 1);
     result = world(lengthOfWorld,heightOfWorld,validateInput(bounds,currGeneration));
-    result = daysIteration(result);
+    result = runIteration(result);
     return validateOutput(bounds,getCoordOfAliveCells(result));
 };
 
