@@ -6,7 +6,7 @@ const generateDeadCells = function(length) {
   return new Array(length).fill(0);
 };
 
-const fillBoard = function(height,length) {
+const generateGrid = function(height,length) {
   let board = [];
   for (let count = 0; count < height; count++) {
     board.push(generateDeadCells(length));
@@ -15,7 +15,7 @@ const fillBoard = function(height,length) {
 };
 
 
-const getNeighbour = function(inputArray, index) {
+const getNeighboursByIndex = function(inputArray, index) {
   let neighbours = [];
   if (index < 0) { return neighbours; }
   neighbours.push(inputArray[index - 1]);
@@ -24,7 +24,7 @@ const getNeighbour = function(inputArray, index) {
 };
 
 const getHorizontalNeighbours = function(inputArray, arrayIndex, subArrayIndex) {
-  return getNeighbour(inputArray[arrayIndex], subArrayIndex);
+  return getNeighboursByIndex(inputArray[arrayIndex], subArrayIndex);
 };
 
 const getVerticalNeighbours = function(inputArray, arrayIndex, subArrayIndex) {
@@ -51,16 +51,16 @@ const getAllNeighbours = function(inputArray, arrayIndex, subArrayIndex) {
   }
 
   // horizontal neighbours
-  neighbours.push(getNeighbour(inputArray[arrayIndex], subArrayIndex)); 
+  neighbours.push(getNeighboursByIndex(inputArray[arrayIndex], subArrayIndex)); 
 
   // top diagonal neighbours
   if (inputArray[arrayIndex - 1] !== undefined) {
-    neighbours.push(getNeighbour(inputArray[arrayIndex - 1], subArrayIndex)); 
+    neighbours.push(getNeighboursByIndex(inputArray[arrayIndex - 1], subArrayIndex)); 
   }
 
   // bottom diagonal neighbours
   if (inputArray[arrayIndex + 1] !== undefined) {
-    neighbours.push(getNeighbour(inputArray[arrayIndex + 1], subArrayIndex)); 
+    neighbours.push(getNeighboursByIndex(inputArray[arrayIndex + 1], subArrayIndex)); 
   }
 
   //vertical neighbours
@@ -104,7 +104,7 @@ const toggleState = function(inputArray, arrayIndex, subArrayIndex) {
 };
 
 const world = function(height,length,resurrectCells) {
-  let result = fillBoard(height,length); 
+  let result = generateGrid(height,length); 
   let arrayIndex = resurrectCells.map(x=>x[0]);
   let subIndex = resurrectCells.map(x=>x[1]); 
   for(let count=0; count<arrayIndex.length; count++) {
@@ -174,8 +174,8 @@ const filterValidGeneration = function(bounds,currGeneration){
 module.exports = {
   repeat,
   generateDeadCells,
-  fillBoard,
-  getNeighbour,
+  generateGrid,  // 
+  getNeighboursByIndex,
   getHorizontalNeighbours,
   getVerticalNeighbours,
   getAllNeighbours,

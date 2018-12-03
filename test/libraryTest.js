@@ -3,8 +3,8 @@ const assert = require('assert');
 const {
   repeat,
   generateDeadCells,
-  fillBoard,
-  getNeighbour,
+  generateGrid,
+  getNeighboursByIndex,
   getHorizontalNeighbours,
   getVerticalNeighbours,
   getAllNeighbours,
@@ -52,37 +52,37 @@ describe('generateDeadCells', function() {
 
 });
 
-describe('fillBoard', function() {
+describe('generateGrid', function() {
 
   it('should work for array of length 0', function() {
-    assert.deepEqual(fillBoard(0,0), []);
+    assert.deepEqual(generateGrid(0,0), []);
   });
 
   it('should work for length as positive number', function() {
-    assert.deepEqual(fillBoard(1,1), [ [0] ]);
-    assert.deepEqual(fillBoard(3,2), [ [0, 0], [0, 0], [0, 0] ]);
+    assert.deepEqual(generateGrid(1,1), [ [0] ]);
+    assert.deepEqual(generateGrid(3,2), [ [0, 0], [0, 0], [0, 0] ]);
   });
 
 });
 
-describe('getNeighbour', function() {
+describe('getNeighboursByIndex', function() {
 
   it('should return empty array for empty array', function() {
-    assert.deepEqual(getNeighbour([]), []);
+    assert.deepEqual(getNeighboursByIndex([]), []);
   });
 
   it('should return one neighbour for edge index', function() {
-    assert.deepEqual(getNeighbour([1, 2, 3, 4], 0), [2]);
-    assert.deepEqual(getNeighbour([1, 2, 3, 4], 3), [3]);
+    assert.deepEqual(getNeighboursByIndex([1, 2, 3, 4], 0), [2]);
+    assert.deepEqual(getNeighboursByIndex([1, 2, 3, 4], 3), [3]);
   });
 
   it('should return empty array for invalid index', function() {
-    assert.deepEqual(getNeighbour([1, 2, 3, 4], 7), []);
-    assert.deepEqual(getNeighbour([1, 2, 3, 4], -1), []);
+    assert.deepEqual(getNeighboursByIndex([1, 2, 3, 4], 7), []);
+    assert.deepEqual(getNeighboursByIndex([1, 2, 3, 4], -1), []);
   });
 
   it('should return two neighbours for non-edge index', function() {
-    assert.deepEqual(getNeighbour([1, 2, 3, 4], 2), [2, 4]);
+    assert.deepEqual(getNeighboursByIndex([1, 2, 3, 4], 2), [2, 4]);
   });
 
 });
